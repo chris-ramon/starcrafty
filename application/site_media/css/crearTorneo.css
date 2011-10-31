@@ -1,0 +1,20 @@
+.pasos{
+font-size:1.5em;
+}
+.raquo{
+font-size:2em;
+margin-left:0.4em;
+margin-right:0.4em;
+}
+#crearTorneo{
+overflow:auto;
+}
+#detalles, #cronograma, #confirmar{
+display:none;
+}
+.crearTorneoContent{
+margin-bottom:5em;
+}
+.advice, .asterisco{
+color:#EC4854;
+}

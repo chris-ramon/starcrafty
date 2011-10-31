@@ -1,0 +1,77 @@
+	.ac_results {
+		padding: 0px;
+		border: 1px solid black;
+		background-color: #6D6161;
+		overflow: hidden;
+		z-index: 99999;
+	}
+
+	.ac_results ul {
+		width: 100%;
+		list-style-position: outside;
+		list-style: none;
+		padding: 0;
+		margin: 0;
+	}
+
+	.ac_results li {
+		margin: 0px;
+		padding: 2px 5px;
+		cursor: default;
+		display: block;
+		/* 
+		if width will be 100% horizontal scrollbar will apear 
+		when scroll mode will be used
+		*/
+		/*width: 100%;*/
+		font: menu;
+		font-size: 16px;
+		/* 
+		it is very important, if line-height not setted or setted 
+		in relative units scroll will be broken in firefox
+		*/
+		line-height: 16px;
+		overflow: hidden;
+	}
+
+	.ac_loading {
+		background: white url('indicator.gif') right center no-repeat;
+	}
+
+	.ac_odd {
+		background-color: #D86969;
+	}
+
+	.ac_over {
+		background-color: #7484AF;
+		color: white;
+        cursor:pointer;
+	}
+    #invitados{
+        font-size:1.3em;
+        padding:6px;
+        	
+	border: solid 1px #C2E078;
+	
+    }
+    
+#invitadosTable{
+color:black;
+width:430px;
+margin:auto;
+border-collapse:collapse;
+border-spacing:0;
+background-color:#fff;
+background-image:-moz-linear-gradient(0% 40% 90deg, #ccc, #fff);
+background-image:-webkit-gradient(linear, 0% 0%, 0% 40%, from(#fff), to(#ccc) );
+text-align:center;
+display:none;
+}
+
+#invitadosTable a{
+color:#213E6C;
+}
+#invitadosTable a:hover{
+color:#CF2E39;
+}
+  

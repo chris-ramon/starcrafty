@@ -1,0 +1,137 @@
+
+<!DOCTYPE html>
+<html lang="es">
+	<head>
+		<meta content="text/html" charset="utf-8">
+		<meta name="description" content="Gestionar reservas de torneos de starcraft 2">
+		<meta name="keywords" content="torneos sc2 perú, sc2 perú torneos, torneos sc2 latinoamerica">
+		<meta name="author" content="Christian Ramón, Omar Barboza">
+		<meta name="robots" content="all ,follow, index">
+		<meta name="generator" content="geany">
+
+		<title>Starcrafty | SC2 Peruvian Tournaments</title>
+		
+		<link rel="stylesheet" href="../site_media/css/css.css" type="text/css"/>
+		        <script src="../site_media/js/jquery.js" type="text/javascript"></script>
+        <script src="../site_media/js/mainScript.js" type="text/javascript"></script>	
+	
+        <!--<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.15/jquery-ui.min.js"></script>
+		<script src="js/mainScript.js" type="text/javascript"></script>
+		<script src="js/jqueryTimer.js" type="text/javascript"></script>-->
+	<head/>
+
+	<body>
+		<div id="container">
+			<div id="header">
+				<div id="headerTop">
+                    <input type="text" name="username" placeholder="Nombre Usuario">
+                    <input type="password" name="pwd" placeholder="Tu pass ...">
+                    <input type="submit" value="ingresar">			
+				</div>
+				<div id="headerLeft">
+					<a href="#">Ingresar</a> |
+					<a href="#">Regístrate</a>
+				</div>
+			</div>
+			
+				<div id="main">
+					<div id="barLeft">
+					<strong>Mis Torneos</strong><br>
+                    <!--<strong>Mi Cuenta</strong>-->
+					</div>
+					<div id="content">
+						<h1>Starcrafty | </h1>
+						<h1>Peruvian SC2 Tournaments</h1>
+						<div id="contentNews">
+                            <img src="../site_media/img/sc2_1.png">
+                        </div>
+						<div id="menu">
+							<a href="mainPage.html" class="button buttonRed">Torneos</a>
+								<div id="torneoMenu">
+									<ul>
+									<li><a href="enCompetencia.html" class="button buttonRed lefty">En Competencia</a></li>
+									<li><a href="concluidos.html" class="button buttonRed lefty">Concluídos</a></li>
+									<li><a href="suspendidos.html" class="button buttonRed lefty">Suspendidos</a></li>																	
+									</ul>
+									
+								</div>
+
+							<a href="reservaAbierta.html" class="button buttonRed">Hacer Reservas</a>
+							<a href="#" class="button buttonRed">Resultados</a>
+							<a href="rankingTorneo.html" class="button buttonRed">Ranking</a>
+							<a href="preguntasFrecuentes.html" class="button buttonRed">Preguntas Frecuentes</a>
+							<a href="contactanos.html" class="button buttonRed">Contáctanos</a>
+						</div>
+						<div id="mainContent">
+						
+							<div class="separator"></div>
+							 <div class="tournamentImg">
+									<!-- Image of the tournament -->
+									<img src="../site_media/img/samplesc2_4.jpg">									
+							</div>
+								
+                            <div class="tournamentOptions">
+                                
+									<!-- Status of the tournament -->
+									
+                                                                        <p>Estado</p>
+                                                                        <select name="estadoDropDownList">
+                                                                            <option>Activo</option>
+                                                                            <option>Suspendido</option>
+                                                                            <option>Reservas Abiertas</option>
+                                                                            <option>Concluido</option>
+                                                                        </select><br>
+                                                                        <input type="submit" value="Confirmar" name="Confirmar" />
+									<!-- Share the tournament -->							
+                                    
+                            </div>
+                                
+							<div class="tournamentContent">
+									<!-- Title of the tournament --><!-- Comments of the tournament -->
+                                                                        <a href="ViewPHP.php?view=descripcion"><h3>Torneo Drago La Molina 2012 ! </h3></a>															
+                                    <!-- Tags of the tournament -->
+                                    
+									<!-- Description of the tournament -->
+									<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam elementum aliquet pretium. 
+									Praesent aliquet feugiat velit eget luctus. Morbi nec mauris mauris. 
+									Ut eu sapien diam. Donec quam nibh, tincidunt sit amet vulputate ut, 
+									hendrerit non lacus. In luctus nulla nec libero molestie eleifend. 
+									Fusce pellentesque libero eget massa tempus id euismod est fringilla. 
+									In faucibus cursus nibh et luctus. Phasellus vel enim eget lectus 
+									fermentum ornare. </p>	
+                                                                        
+                                                                        
+                                                                            
+                                                                        
+							</div>
+
+							<div class="newDescripcion">
+								<input type="text" 
+									   name="descripcion" value="<<Descripcion de torneo para anadir>>" />
+    
+							</div>
+							<p>Replay</p>
+							<input type="file" name="Cargar video" value="Cargar Video" />
+
+                             <div class="separator"></div>
+						
+
+						</div>
+                        
+                        <div class="separator last"></div>
+                        <div class="separator last"></div>
+                        
+                        
+                        <div id="footer">
+                            <p>Nosotros <a href="#">¿Quién es Starcrafty?</a> | <a href="#">Contáctenos</a> | <a href="#">Administrador</a></p>
+                            <p>Torneos <a href="#">Mis Torneos</a> | <a href="#">Mis Reservas</a> | <a href="#">En Competencia</a> | <a href="#">Concluídos</a> | <a href="#">Suspendidos</a></p>
+                            <p>Cuenta <a href="#">Crear Cuenta</a> | <a href="#">Resumen de Cuenta</a></p>
+                            <p>FAQ <a href="#">Ayuda</a></p>
+                        </div>
+                    </div>                    
+                </div>	
+			</div>		
+	</body>
+		
+		
+</html>

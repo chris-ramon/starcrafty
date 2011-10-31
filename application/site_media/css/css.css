@@ -1,0 +1,345 @@
+/*
+*{
+border:1px solid orange;
+}
+*/
+body{
+font-size:14px;
+font-family:Verdana;
+background:url('../img/back/always_grey.png');
+color:#EFF2FF;
+}
+body a, .resaltado{
+color:#75A9FB;
+}
+body a:hover:not(.button){
+color:#EC4854;
+}
+body h2, h3, p{
+color:#EFF1F4;
+}
+body h2{
+font-size:1.7em;
+font-weight:normal;
+}
+body p{
+font-size:1em;
+}
+body code{
+font-size:1.3em;
+text-shadow:1px 1px 1px #940500;
+}
+#header{
+margin:1em auto;
+width:900px;
+overflow:auto;
+padding-left:1.5em;   
+}
+#headerTop{
+width:30em;
+float:left;
+}
+
+#headerLeft{
+width:20em;
+margin-left:40em;
+text-align:right;
+}
+
+#main{
+clear:both;
+margin:0 auto;
+width:1200px;
+}
+#barLeft{
+border-top:1px solid #D2D2D2;
+border-bottom:1px solid #D2D2D2;
+text-align:left;
+float:left;
+margin-top:26.5em;
+-webkit-box-shadow:1px 1px 20px white;
+-moz-box-shadow:1px 1px 20px white;
+}
+#barLeft ul{
+padding:0px .5em 1.5em 1em;
+}
+#barLeft ul li{
+}
+#content{
+margin-top:2em;
+margin-left:9.5em;
+padding:1em 2em 0px 2em;
+width:900px;
+-webkit-border-radius:15px;
+-moz-border-radius:15px;
+overflow:auto;
+}
+#content h1{
+display:block;
+width:19em;
+letter-spacing:5px;
+font-size:2em;
+font-weight:normal;
+float:left;
+color: #72A4FE;
+text-shadow: 1px 1px 2px #fff;
+}
+#contentNews{
+width:310px;
+height:130px;
+margin-left:40em;
+margin-top:1.3em;
+}
+#contentNews img{
+height:130px;
+width:310px;
+}
+#menu{
+margin-top:2em;
+}
+/* Menú */
+.button{
+display:inline-block;
+outline:none;
+cursor:pointer;
+text-align:center;
+text-decoration:none;
+font:14px/100% Arial, Helvetica, sans-serif;
+padding: .5em 2em .55em;
+text-shadow: 0 1px 1px rgba(0,0,0,.3);
+-webkit-border-radius: .5em; 
+-moz-border-radius: .5em;
+border-radius: .5em;
+-webkit-box-shadow: 0 1px 2px rgba(0,0,0,.2);
+-moz-box-shadow: 0 1px 2px rgba(0,0,0,.2);
+box-shadow: 0 1px 2px rgba(0,0,0,.2);
+}
+
+.button:hover {
+text-decoration:none;
+}
+
+.button:active {
+	position: relative;
+	top: 1px;
+}
+
+.buttonRed {
+	color: #fef4e9;
+	border: solid 0px white;
+	background: #692B28;
+	background: -webkit-gradient(linear, left top, left bottom, from(#693F3D), to(#550D09));
+	background: -moz-linear-gradient(top,  #693F3D,  #550D09);
+	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#693F3D', endColorstr='#550D09');
+}
+.buttonRed:hover {
+	background: #940500;
+	background: -webkit-gradient(linear, left top, left bottom, from(#B31710), to(#B30700));
+	background: -moz-linear-gradient(top,  #B31710,  #B30700);
+	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#B31710', endColorstr='#B30700');
+}
+.buttonRed:active {
+	background: #940500;
+	background: -webkit-gradient(linear, left top, left bottom, from(#B31710), to(#B30700));
+	background: -moz-linear-gradient(top,  #B31710,  #B30700);
+	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='##B31710', endColorstr='#B30700');
+}
+
+/* Fin Menú */
+#mainContent h2{
+margin-top:2em;
+}
+#busquedaTorneo{
+width:370px;
+margin-left:36em;
+margin-bottom:.5em;
+}
+#busquedaTorneo p{
+margin:0;
+}
+
+#busquedaTorneo input[type="search"]{
+width:300px;
+background-image:url('../img/glass.png');
+background-repeat:no-repeat;
+padding-left:25px;
+border:3px solid #D25551;
+height:2.4em;
+margin-right:.4em;
+}
+.tournamentImg{
+clear:left;
+width:500px;
+float:left;
+}
+.tournamentOptions{
+width:200px;
+margin-left:42em;
+}
+.shareTournament{
+
+}
+.tournamentContent{
+clear:both;
+}
+.statusTournament{
+display:block;
+margin-right:10px;
+width:1.3em;
+height:1.3em;
+-webkit-border-radius:25px;
+-moz-border-radius:25px;
+border-radius:25px;
+float:left;
+}
+.green{
+background:#71B43A;
+}
+.blue{
+background:#3648CC;
+}
+.red{
+background:#D1331F;
+}
+.yellow{
+background:#ECE61F;
+}
+.tournamentContent h3{
+width:600px;
+float:left;
+}
+.tournamentContent p{
+clear:both;
+}
+.seeMore{
+text-align:center;
+border:1px solid orange;
+-webkit-border-radius:10px;
+-moz-border-radius:10px;
+margin:10px auto 40px;
+background:#DAE4F5;
+padding:10px;
+}
+.seeMore a{
+color:#235094;
+}
+.separator:not(.last){
+border-top:2px solid #693F3D;
+border-bottom:1px solid white;
+margin-top:4em;
+margin-bottom:4em;
+-moz-box-shadow: 4px 4px 4px #888;
+-webkit-box-shadow: 4px 4px 4px #888;
+box-shadow: 4px 4px 4px #888;
+}
+.last{
+border-top:2px solid #693F3D;
+border-bottom:1px solid white;
+}
+#backgroundPopUp{
+height:100%;
+width:100%;
+background:#000000;
+position:fixed;
+display:none;
+top:0;
+left:0;
+z-index:1;
+}
+.detalleReserva{
+position:absolute;
+width:40em;
+height:25em;
+border:3px solid white;
+background:#2A3034;
+border-radius:10px;
+z-index:2;
+display:none;
+}
+#popUp a{
+margin:0px 0px 0px 10px;
+}
+#torneoMenu{
+position:absolute;
+padding:0;
+margin:0;
+display:none;
+}
+#torneoMenu ul{
+padding:0;
+}
+#torneoMenu ul li{
+margin-bottom:1em;
+list-style:none;
+}
+#registro{
+position:absolute;
+width:900px;
+height:120px;
+border:3px solid white;
+padding:10px 0px 0px 30px;
+-webkit-border-radius:15px;
+-moz-border-radius:15px;
+background:#9CBBF2;
+display:none;
+z-index:3;
+}
+#cerrarRegistro{
+color:#EC4854;
+font-size:2em;
+float:right;
+margin-right:20px;
+cursor:pointer;
+}
+#cerrarRegistro:hover{
+color:#851820;
+}
+#headerTop input[type="text"], #headerTop input[type="password"], #registro input[type="text"], #registro input[type="password"]{
+padding: 9px;
+border: solid 1px #E5E5E5;
+outline: 0;
+font: normal 13px/100% Verdana, Tahoma, sans-serif;
+width: 140px;
+background: #FFFFFF url('bg_form.png') left top repeat-x;
+background: -webkit-gradient(linear, left top, left 25, from(#FFFFFF), color-stop(4%, #EEEEEE), to(#FFFFFF));
+background: -moz-linear-gradient(top, #FFFFFF, #EEEEEE 1px, #FFFFFF 25px);
+box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px;
+-moz-box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px;
+-webkit-box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px;
+}
+#headerTop input[type="text"], #headerTop input[type="password"]{
+width: 140px;
+padding: 4px;
+}
+.reddy{
+color:#000;
+}
+#detalleReservaContent{
+width:200px;
+margin:0 auto;
+}
+
+.confirmacionTorneos tr,th,td{
+border:1px solid white;
+padding:5px;
+}
+.boton{
+border:2px solid white;
+background:white;
+padding:7px;
+margin-bottom:1em;
+}
+.boton:hover{
+background:#EC4854;
+cursor:pointer;
+}
+#invitados{
+  display: inline-block;
+}
+.advice{
+color:#EC4854;
+}
+.error_register{
+font-size:1.3em;
+text-shadow:1px 1px 8px white;
+}
