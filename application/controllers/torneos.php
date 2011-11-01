@@ -3,7 +3,10 @@ require_once 'upload.php';
 
 class Torneos extends CI_Controller{
     function index(){
+        $this->load->model('torneo_model');
+        $this->load->model('torneos_tags_model');
         $data['main_content'] = "starcrafty";
+        $data['torneos'] = $this->torneo_model->principalInfo();                
         $this->load->view('includes/template', $data);
     }
     
@@ -40,11 +43,82 @@ class Torneos extends CI_Controller{
         }
     }
     
-    function nuevo(){
-        $upload = new Upload();
-        $error = $upload->do_upload('imagen');        
-        $this->index();
+    function nuevo(){          
+        
+        $nombre = $this->input->post('nombre', TRUE);
+        $descripcion = $this->input->post('descripcion', TRUE);        
+        
+        $result = $this->do_upload('imagen');
+        $fileName = $result['file_name'];
+        $image = "http://localhost/starcrafty/uploads/".$fileName;
+
+        $data['nombre'] = $nombre;
+        $data['descripcion'] = $descripcion;
+        $data['imagen'] = $image;
+        $data['estado'] = "Reserva Abierta";
+        $data['id_miembro'] = $this->session->userdata('id');
+
+        $this->load->model('torneo_model');        
+        
+        $r = $this->torneo_model->nuevoTorneo($data);
+        
+        $this->_agregarTags();
+
+        redirect('/');
         
     }
     
+    // lógica para agregar el torneo
+
+    // función para subir la imagen a la carpeta uploads que
+    // está al mismo nivel que el path raíz
+
+        function do_upload($field_name){
+            $config['upload_path'] = './uploads/';
+            $config['allowed_types'] = 'gif|jpg|png';
+            $config['max_size'] = '100';
+            $config['max_width']  = '1024';
+            $config['max_height']  = '768';
+            
+            $this->load->library('upload', $config);              
+            
+            if ( ! $this->upload->do_upload($field_name))
+            {
+                $error = array('error' => $this->upload->display_errors());
+                return $error['error'];
+            }
+            else
+            {
+                $data = array('upload_data' => $this->upload->data());
+                return $this->upload->data();
+            }
+        }
+
+        function _agregarTags(){    
+            $id_torneo = mysql_insert_id();
+            $data['id_torneo'] = $id_torneo;
+            $this->load->model('tag_model');
+            $this->load->model('torneos_tags_model');
+            $tags = $this->input->post('tags', TRUE);
+            $tagsArray = explode(" ", $tags);
+            $i = 0;
+            foreach($tagsArray as $tag){                
+               $r = $this->tag_model->searchByName($tag);
+               if($r){                                        
+                    $data['id_tag'] = $r[0]->id;
+                    $this->torneos_tags_model->insert($data);
+
+               }
+               else {
+                   $data_tag['tag'] = $tag;
+                   $this->tag_model->insert($data_tag);
+                   $data['id_tag'] = mysql_insert_id();
+                   $this->torneos_tags_model->insert($data);
+               }
+            
+            }
+        }
+
+    
+    // termina la lógica para agregar el torneo 
 }

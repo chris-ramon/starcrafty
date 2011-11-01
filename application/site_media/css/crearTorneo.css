@@ -18,3 +18,11 @@ margin-bottom:5em;
 .advice, .asterisco{
 color:#EC4854;
 }
+#crearTorneo textarea[name="descripcion"]{
+width:890px;
+height:100px;
+font-family:arial;
+}
+#crearTorneo input[type="text"]{
+width:280px;
+}

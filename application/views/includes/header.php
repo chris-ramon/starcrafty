@@ -83,8 +83,11 @@
                     <?php if($this->session->userdata('is_logged')) { ?>
 					<div id="barLeft"> 
                         <ul>
-                            <ul><strong>Mis Torneos</strong>
+                            <ul><strong>Crea tu propio torneo !</strong>
                                 <li><a href="/starcrafty/torneos/crear">Crear Torneo</a></li>
+                            </ul>
+                            <ul><strong>Mis Torneos</strong>
+                                <li></li>
                             </ul>
                             <ul><strong>Mi Cuenta</strong>
                                 <li><a href="crearTorneo.html">Actualizar Información</a></li>

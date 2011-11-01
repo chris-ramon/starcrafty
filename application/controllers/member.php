@@ -9,10 +9,11 @@ class Member extends CI_Controller{
         } 
         else{
             $this->load->model('member_model');
-            $query = $this->member_model->validate();
-            if($query){               
+            $id = $this->member_model->validate();
+            if($id){               
                 $data = array(
-                    'username' =>  $this->input->post('username'),
+                    'username' =>  $this->input->post('username'),                    
+                    'id' => $id,
                     'is_logged' => true
                 );
                 $this->session->set_userdata($data);

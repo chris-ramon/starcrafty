@@ -8,7 +8,7 @@ class Upload extends CI_Controller{
 		$config['max_width']  = '1024';
 		$config['max_height']  = '768';
         
-        $this->load->library('upload', $config);       
+        $this->load->library('upload', $config);      
         
         
         if ( ! $this->upload->do_upload($field_name))
@@ -19,7 +19,7 @@ class Upload extends CI_Controller{
 		else
 		{
 			$data = array('upload_data' => $this->upload->data());
-			redirect('/');
+			return $this->upload->data();
 		}
     }
 

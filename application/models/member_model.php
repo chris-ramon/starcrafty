@@ -2,11 +2,13 @@
 
 class Member_model extends CI_Model{
     function validate(){
+        $this->db->select('id');        
         $this->db->where('username', $this->input->post('username'));
         $this->db->where('password', md5($this->input->post('pwd')));
         $query = $this->db->get('miembros');
         if($query->num_rows == 1){
-            return 1;
+            $r = $query->result();
+            return $r[0]->id;
         }
         else{ return 0; }
     }
@@ -21,4 +23,6 @@ class Member_model extends CI_Model{
         $insert = $this->db->insert('miembros', $new_member_insert_data);
         return $insert;
     }
+
+    
 }
