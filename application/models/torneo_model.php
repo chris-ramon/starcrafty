@@ -1,6 +1,23 @@
 <?php
 
-class Torneo_model extends CI_Model{	
+class Torneo_model extends CI_Model{
+	private $_id;
+	private $_id_user;
+	private $_estado;
+	private $_nombre;
+	private $_descripcion;
+	private $_imagen;
+
+	function __construct($id="", $id_user="", $estado="", $nombre="", $descripcion="", $image=""){
+		$this->_id = $id;
+		$this->_id_user = $id_user;
+		$this->_estado = $estado;
+		$this->_nombre = $nombre;
+		$this->_descripcion = $descripcion;
+		$this->_imagen = $image;
+	}
+
+	
 	function nuevoTorneo($data){
 		$this->load->model('persistence');
 		$result = $this->persistence->insert('torneos',$data);

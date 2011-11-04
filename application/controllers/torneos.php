@@ -59,14 +59,15 @@ class Torneos extends CI_Controller{
         }
     }
     
-    function nuevo(){          
+    function nuevo(){   
+        $result = $this->do_upload('imagen');
+        $fileName = $result['file_name'];
+        $image = "http://localhost/starcrafty/uploads/".$fileName;       
         
         $nombre = $this->input->post('nombre', TRUE);
         $descripcion = $this->input->post('descripcion', TRUE);        
         
-        $result = $this->do_upload('imagen');
-        $fileName = $result['file_name'];
-        $image = "http://localhost/starcrafty/uploads/".$fileName;
+       
 
         $data['nombre'] = $nombre;
         $data['descripcion'] = $descripcion;
@@ -92,7 +93,7 @@ class Torneos extends CI_Controller{
         function do_upload($field_name){
             $config['upload_path'] = './uploads/';
             $config['allowed_types'] = 'gif|jpg|png';
-            $config['max_size'] = '100';
+            $config['max_size'] = '900';
             $config['max_width']  = '1024';
             $config['max_height']  = '768';
             
