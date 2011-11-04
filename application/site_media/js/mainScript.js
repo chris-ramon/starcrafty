@@ -28,5 +28,11 @@ $(document).ready(function(){
         $('#registro').fadeOut();
         $('#backgroundPopUp').css('opacity','1');    
     });
+
+    $('#content h1').bind('click', ir);
     
 });
+
+function ir(){
+    window.location = "/starcrafty/";
+}

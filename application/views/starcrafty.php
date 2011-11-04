@@ -68,7 +68,7 @@ registrate y crea uno !
                                 
 								<div class="tournamentContent">
 									<!-- Title of the tournament --><!-- Comments of the tournament -->
-									<h3><a href="#"><?php echo $torneo->nombre; ?></a> | <a href="#">Comentarios(10)</a></h3>																	
+									<h3><a href="/starcrafty/torneos/detalle/<?php echo $torneo->id ?>"><?php echo $torneo->nombre; ?></a> | <a href="#">Comentarios(10)</a></h3>																	
                                     <!-- Tags of the tournament -->
                                     <p>Tags: <?php foreach($torneo->tags as $tag) { ?>
                                     <a href="#"><?php echo $tag->tag ?></a>

@@ -14,7 +14,8 @@ class Member extends CI_Controller{
                 $data = array(
                     'username' =>  $this->input->post('username'),                    
                     'id' => $id,
-                    'is_logged' => true
+                    'is_logged' => true,
+                    'torneos_creados' => $this->member_model->obtenerTorneosCreados($id)
                 );
                 $this->session->set_userdata($data);
                 redirect('/');
@@ -48,7 +49,7 @@ class Member extends CI_Controller{
                 $this->login();
             }
             else{
-                echo 'false';
+                show_404();
             }
         }
     }   

@@ -9,7 +9,7 @@
 		<meta name="generator" content="geany">
 
 		<title>Starcrafty | SC2 Peruvian Tournaments</title>
-		
+		<link href='http://fonts.googleapis.com/css?family=Gochi+Hand' rel='stylesheet' type='text/css'>
 		<link rel="stylesheet" href="<?php echo base_url();?>application/site_media/css/css.css" type="text/css" media="screen" />	
         <?php if(isset($second_css)) { ?>
             <?php if($second_css) { ?>
@@ -84,10 +84,17 @@
 					<div id="barLeft"> 
                         <ul>
                             <ul><strong>Crea tu propio torneo !</strong>
-                                <li><a href="/starcrafty/torneos/crear">Crear Torneo</a></li>
+                                <li><a href="/starcrafty/torneos/crearpub">Crear Torneo Público</a></li>
+                                <li><a href="/starcrafty/torneos/crearpriv">Crear Torneo Privado</a></li>
+
                             </ul>
                             <ul><strong>Mis Torneos</strong>
-                                <li></li>
+                                <?php $torneos_creados = $this->session->userdata('torneos_creados'); ?>
+                                <?php if($torneos_creados) { ?>
+                                    <?php foreach($torneos_creados as $torneo) { ?>
+                                        <li><a href="/starcrafty/torneos/detalle/<?php echo $torneo->id ?>"><?php echo $torneo->nombre ?></a> | <a href="/starcrafty/torneos/actualizar/<?php echo $torneo->id ?>">actualizar info... </a></li>
+                                    <?php } ?>
+                                <?php } ?>
                             </ul>
                             <ul><strong>Mi Cuenta</strong>
                                 <li><a href="crearTorneo.html">Actualizar Información</a></li>
@@ -96,8 +103,7 @@
                     </div>
                     <?php } ?>
 					<div id="content">
-						<h1>Starcrafty | </h1>
-						<h1>Peruvian SC2 Tournaments</h1>
+						<h1>Starcrafty | Peruvian SC2 Tournaments</h1>
 						<div id="contentNews">
                             <img src="<?php echo base_url();?>application/site_media/img/sc2_1.png">
                         </div>

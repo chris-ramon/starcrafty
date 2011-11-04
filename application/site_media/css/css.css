@@ -55,6 +55,7 @@ width:1200px;
 border-top:1px solid #D2D2D2;
 border-bottom:1px solid #D2D2D2;
 text-align:left;
+width:16em;
 float:left;
 margin-top:26.5em;
 -webkit-box-shadow:1px 1px 20px white;
@@ -64,10 +65,12 @@ margin-top:26.5em;
 padding:0px .5em 1.5em 1em;
 }
 #barLeft ul li{
+margin-bottom:1em;
 }
 #content{
 margin-top:2em;
 margin-left:9.5em;
+
 padding:1em 2em 0px 2em;
 width:900px;
 -webkit-border-radius:15px;
@@ -75,14 +78,21 @@ width:900px;
 overflow:auto;
 }
 #content h1{
+font-family: 'Gochi Hand', cursive;
 display:block;
-width:19em;
+width:15em;
 letter-spacing:5px;
-font-size:2em;
+font-size:2.6em;
 font-weight:normal;
 float:left;
 color: #72A4FE;
 text-shadow: 1px 1px 2px #fff;
+}
+#content h1:hover{
+cursor:pointer;
+color: #DFE7F6;
+transform: scale(1.1);
+-webkit-transform: scale(1.1);
 }
 #contentNews{
 width:310px;

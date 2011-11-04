@@ -20,4 +20,11 @@ class Torneo_model extends CI_Model{
 		return $data;
 	}
 
+	function buscarPorId($id){
+		$this->db->where('id', $id);
+		$query = $this->db->get('torneos');
+		$result = $query->result();
+		return $result[0];
+	}
+
 }

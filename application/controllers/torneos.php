@@ -6,7 +6,8 @@ class Torneos extends CI_Controller{
         $this->load->model('torneo_model');
         $this->load->model('torneos_tags_model');
         $data['main_content'] = "starcrafty";
-        $data['torneos'] = $this->torneo_model->principalInfo();                
+        $torneos = $this->torneo_model->principalInfo();                
+        $data['torneos'] = array_reverse($torneos);
         $this->load->view('includes/template', $data);
     }
     
@@ -29,7 +30,19 @@ class Torneos extends CI_Controller{
         $data['main_content'] = "concluidos";
         $this->load->view('includes/template', $data);
     }
-    function crear(){
+
+    function detalle($id){        
+        $this->load->model('torneo_model');
+        $data['main_content'] = "detalle";
+        $data['torneo'] = $this->torneo_model->buscarPorId($id);
+        $this->load->view('includes/template', $data);        
+    }
+
+    function actualizar($id){
+        echo 'from actualizar '.$id;
+    }
+
+    function crearpub(){
         $is_logged = $this->session->userdata('is_logged');
         if($is_logged){
             $data['main_content'] = "crear";

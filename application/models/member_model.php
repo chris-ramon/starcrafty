@@ -24,5 +24,19 @@ class Member_model extends CI_Model{
         return $insert;
     }
 
+    function obtenerTorneosCreados($id){
+        $sql = "SELECT torneos.id, torneos.nombre\n"
+    . "FROM `torneos`\n"
+    . "INNER JOIN `miembros`\n"
+    . "ON torneos.id_miembro = miembros.id\n"
+    . "WHERE miembros.id = $id LIMIT 0, 30 ";
+        $query = $this->db->query($sql);
+        if($query){
+            $result = $query->result();
+            return $result;
+        }
+        return FALSE;
+    }
+
     
 }
