@@ -26,7 +26,7 @@
                     <span id="cerrarRegistro">X</span><p>
                     <?php         
                     $this->load->helper('form');           
-                    echo form_open('/member/register/');
+                    echo form_open('/user/register/gamer');
                     $attr = array('class' => 'reddy');
                     
                     echo form_label('Username ', 'username', $attr);
@@ -62,7 +62,7 @@
                     ?>                
 				<div id="headerTop">
                     <?php if(!($this->session->userdata('is_logged')) ) { ?>
-                    <form method="post" action="/starcrafty/member/login/">
+                    <form method="post" action="/starcrafty/user/login/">
                         <input type="text" name="username" placeholder="Nombre Usuario">
                         <input type="password" name="pwd" placeholder="Tu pass ...">
                         <input type="submit" value="ingresar">			
@@ -72,7 +72,7 @@
 				<div id="headerLeft">
                     <?php if($this->session->userdata('is_logged')) { ?>
 					<?php echo $this->session->userdata('username');?> |
-                    <a href="/starcrafty/member/logout/" id="salir">Salir</a>
+                    <a href="/starcrafty/user/logout/" id="salir">Salir</a>
                     <?php } else { ?>
 					<a href="#" id="registrate">Regístrate</a>
                     <?php } ?>
@@ -83,6 +83,11 @@
                     <?php if($this->session->userdata('is_logged')) { ?>
 					<div id="barLeft"> 
                         <ul>
+                            <?php if( $this->session->userdata('rol') == 'admin') { ?>
+                                <ul><strong><a href="">Torneos Por Aprobar</a> &raquo; </strong>
+                                    
+                                </ul>
+                            <?php } ?>
                             <ul><strong>Crea tu propio torneo !</strong>
                                 <li><a href="/starcrafty/torneos/crearpub">Crear Torneo Público</a></li>
                                 <li><a href="/starcrafty/torneos/crearpriv">Crear Torneo Privado</a></li>
@@ -94,6 +99,8 @@
                                     <?php foreach($torneos_creados as $torneo) { ?>
                                         <li><a href="/starcrafty/torneos/detalle/<?php echo $torneo->id ?>"><?php echo $torneo->nombre ?></a> | <a href="/starcrafty/torneos/actualizar/<?php echo $torneo->id ?>">actualizar info... </a></li>
                                     <?php } ?>
+                                <?php } else{ ?>
+                                <p>No tienes ningún torneo</p>
                                 <?php } ?>
                             </ul>
                             <ul><strong>Mi Cuenta</strong>

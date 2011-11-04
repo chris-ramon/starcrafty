@@ -2,8 +2,8 @@
 
 class Test extends CI_Controller{
 	function index(){
-		$this->load->model('member_model');
-		$query = $this->member_model->obtenerTorneosCreados(1);
+		$this->load->model('user_model');
+		$query = $this->member_model->validate();
 		echo var_dump($query);
 		
 	}

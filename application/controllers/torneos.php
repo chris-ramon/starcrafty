@@ -6,8 +6,11 @@ class Torneos extends CI_Controller{
         $this->load->model('torneo_model');
         $this->load->model('torneos_tags_model');
         $data['main_content'] = "starcrafty";
-        $torneos = $this->torneo_model->principalInfo();                
-        $data['torneos'] = array_reverse($torneos);
+        $torneos = $this->torneo_model->principalInfo();
+        $data['torneos'] = $torneos;
+        if($torneos){
+            $data['torneos'] = array_reverse($torneos);    
+        }        
         $this->load->view('includes/template', $data);
     }
     
@@ -69,7 +72,7 @@ class Torneos extends CI_Controller{
         $data['descripcion'] = $descripcion;
         $data['imagen'] = $image;
         $data['estado'] = "Reserva Abierta";
-        $data['id_miembro'] = $this->session->userdata('id');
+        $data['id_user'] = $this->session->userdata('id');
 
         $this->load->model('torneo_model');        
         
