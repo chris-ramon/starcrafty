@@ -36,3 +36,5 @@ $(document).ready(function(){
 function ir(){
     window.location = "/starcrafty/";
 }
+
+

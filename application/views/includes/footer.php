@@ -13,10 +13,16 @@
 </div>
 <div id="backgroundPopUp"></div>        
         <script src="<?php echo base_url();?>application/site_media/js/jquery.js" type="text/javascript"></script>
-        <script src="<?php echo base_url();?>application/site_media/js/mainScript.js" type="text/javascript"></script>        
+        <script src="<?php echo base_url();?>application/site_media/js/mainScript.js" type="text/javascript"></script>
+        <script src="<?php echo base_url();?>application/site_media/js/jquery.autocomplete.min.js" type="text/javascript"></script>        
         <?php if(isset($second_js)) { ?>
             <?php if($second_js) { ?>        
             <script src="<?php echo base_url();?>application/site_media/js/<?php echo $second_js?>.js" type="text/javascript"></script>        
+            <?php } ?>
+        <?php } ?>
+        <?php if(isset($third_js)) { ?>
+            <?php if($third_js) { ?>        
+            <script src="<?php echo base_url();?>application/site_media/js/<?php echo $third_js?>.js" type="text/javascript"></script>        
             <?php } ?>
         <?php } ?>
     </body>

@@ -1,22 +1,22 @@
 <div id="mainContent">
-                                <!-- En el siguiente h2 colocan el título de su página -->
-                                <!-- Osea acá--><h2>Torneos</h2>
-                                <div id="busquedaTorneo">
-                                    <p><input type="search" name="busqueda" class="busqueda"><input type="submit" value="Buscar" class="boton"></p>
-                                </div>
+                            <h2>Torneos</h2>
+                            <div id="busquedaTorneo">
+                                <p><input type="search" name="busqueda" class="busqueda"><input type="submit" value="Buscar" class="boton"></p>
+                            </div>
                             
                             <div class="separator last"></div>
 							<div id="tournament">
-                                <?php if(!$torneos) { ?>
-                                    <pre>
+                            <?php if(isset($torneos)) { ?>
+                            <?php if(!$torneos || $aprobados == 0) { ?>
+                            <pre>
 
 No existen torneos registrados por el momento ... 
-registrate y crea uno !
+regístrate y crea uno !
 
-                                    </pre>
-                                <?php } else{ ?>
-                                    <?php foreach($torneos as $torneo) { ?>
-                                <!-- Torneo con reserva abierta -->
+                            </pre>
+                            <?php } else{ ?>
+                            <?php foreach($torneos as $torneo) { ?>
+                                <?php if($torneo->aprobado=="si") {?>
                                 <div class="detalleReserva">
                                                                     
                                     <div id="detalleReservaContent">
@@ -35,7 +35,7 @@ registrate y crea uno !
                                 </div>
 								<div class="tournamentImg">
 									<!-- Image of the tournament -->
-									<img src="<?php echo $torneo->imagen ?>">									
+									<img src="<?php echo $torneo->imagen ?>">								
 								</div>
 								
                                 <div class="tournamentOptions">
@@ -68,7 +68,7 @@ registrate y crea uno !
                                 
 								<div class="tournamentContent">
 									<!-- Title of the tournament --><!-- Comments of the tournament -->
-									<h3><a href="/starcrafty/torneos/detalle/<?php echo $torneo->id ?>"><?php echo $torneo->nombre; ?></a> | <a href="#">Comentarios(10)</a></h3>																	
+									<h3><a href="/starcrafty/torneos/detalle/<?php echo $torneo->id ?>"><?php echo $torneo->nombre; ?></a> | <a href="/starcrafty/torneos/detalle/<?php echo $torneo->id ?>/#comentarios">Comentarios(<?php echo $torneo->cantidad_comentarios ?>)</a></h3>																	
                                     <!-- Tags of the tournament -->
                                     <p>Tags: <?php foreach($torneo->tags as $tag) { ?>
                                     <a href="#"><?php echo $tag->tag ?></a>
@@ -78,16 +78,19 @@ registrate y crea uno !
 									<p><?php echo $torneo->descripcion ?><a href="#"> más ...</a></p>									
 								</div>
                                 <div class="separator"></div>   
+                                <?php } ?>                                                                <?php } ?>                                                     
                                 <?php } ?>                                                                                                                     
                                 <?php } ?>                                                                                                                     
                             
                             </div>
                             
                             <!-- Div for see more tournamnet's -->
-                            <?php if($torneos) { ?>
-                            <div class="seeMore">
-                                <a href="#">Ver más</a>
-                            </div>                            
+                            <?php if(isset($torneos)) { ?>
+                                <?php if($torneos && $aprobados != 0) { ?>
+                                <div class="seeMore">
+                                    <a href="#">Ver más</a>
+                                </div>                            
+                                <?php } ?>
                             <?php } ?>
 						</div>                   
 

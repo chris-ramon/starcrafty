@@ -26,7 +26,7 @@
                     <span id="cerrarRegistro">X</span><p>
                     <?php         
                     $this->load->helper('form');           
-                    echo form_open('/member/register/');
+                    echo form_open('/user/register/gamer');
                     $attr = array('class' => 'reddy');
                     
                     echo form_label('Username ', 'username', $attr);
@@ -55,14 +55,13 @@
                     
                     
                     ?>              
-                </div>
-                    <?php
-                    echo validation_errors('<p class="error_register">');
-                    echo form_close();
-                    ?>                
+                </div>                   
+                    <?php echo validation_errors('<div class="error_register"><a href="#comentarios"> &raquo; </a>');?>
+                        
+                    <?php echo form_close(); ?>
 				<div id="headerTop">
                     <?php if(!($this->session->userdata('is_logged')) ) { ?>
-                    <form method="post" action="/starcrafty/member/login/">
+                    <form method="post" action="/starcrafty/user/login/">
                         <input type="text" name="username" placeholder="Nombre Usuario">
                         <input type="password" name="pwd" placeholder="Tu pass ...">
                         <input type="submit" value="ingresar">			
@@ -72,7 +71,7 @@
 				<div id="headerLeft">
                     <?php if($this->session->userdata('is_logged')) { ?>
 					<?php echo $this->session->userdata('username');?> |
-                    <a href="/starcrafty/member/logout/" id="salir">Salir</a>
+                    <a href="/starcrafty/user/logout/" id="salir">Salir</a>
                     <?php } else { ?>
 					<a href="#" id="registrate">Regístrate</a>
                     <?php } ?>
@@ -81,19 +80,27 @@
 			
 				<div id="main">
                     <?php if($this->session->userdata('is_logged')) { ?>
-					<div id="barLeft"> 
+					<div id="barLeft">
+                        <img src="<?php echo base_url() ?>application/site_media/img/sc2terran.png">
                         <ul>
+                            <?php if( $this->session->userdata('rol') == 'admin') { ?>
+                                <ul><strong><a href="/starcrafty/torneos/poraprobar">Torneos Por Aprobar</a> &raquo; </strong>
+                                    
+                                </ul>
+                            <?php } ?>
                             <ul><strong>Crea tu propio torneo !</strong>
                                 <li><a href="/starcrafty/torneos/crearpub">Crear Torneo Público</a></li>
                                 <li><a href="/starcrafty/torneos/crearpriv">Crear Torneo Privado</a></li>
 
                             </ul>
-                            <ul><strong>Mis Torneos</strong>
+                            <ul class="misTorneosSession"><strong>Mis Torneos</strong>
                                 <?php $torneos_creados = $this->session->userdata('torneos_creados'); ?>
                                 <?php if($torneos_creados) { ?>
                                     <?php foreach($torneos_creados as $torneo) { ?>
                                         <li><a href="/starcrafty/torneos/detalle/<?php echo $torneo->id ?>"><?php echo $torneo->nombre ?></a> | <a href="/starcrafty/torneos/actualizar/<?php echo $torneo->id ?>">actualizar info... </a></li>
                                     <?php } ?>
+                                <?php } else{ ?>
+                                <p>No tienes ningún torneo</p>
                                 <?php } ?>
                             </ul>
                             <ul><strong>Mi Cuenta</strong>
@@ -103,10 +110,13 @@
                     </div>
                     <?php } ?>
 					<div id="content">
-						<h1>Starcrafty | Peruvian SC2 Tournaments</h1>
+                        <header>
+                            <h1>Starcrafty | Peruvian SC2 Tournaments</h1>
+                        </header>
+						<!-- <h1>Starcrafty | Peruvian SC2 Tournaments</h1>
 						<div id="contentNews">
                             <img src="<?php echo base_url();?>application/site_media/img/sc2_1.png">
-                        </div>
+                        </div> -->
 						<div id="menu">
 							<a href="/starcrafty/torneos/" class="button buttonRed">Torneos</a>
 								<div id="torneoMenu">

@@ -1,6 +1,6 @@
 <?php
 
-class Member extends CI_Controller{
+class User extends CI_Controller{
     function login(){
         $username = $this->input->post('username');
         $pwd = $this->input->post('pwd');        
@@ -8,14 +8,15 @@ class Member extends CI_Controller{
             redirect('/');
         } 
         else{
-            $this->load->model('member_model');
-            $id = $this->member_model->validate();
-            if($id){               
+            $this->load->model('user_model');
+            $q = $this->user_model->validate();
+            if($q){               
                 $data = array(
                     'username' =>  $this->input->post('username'),                    
-                    'id' => $id,
+                    'id' => $q->id,
                     'is_logged' => true,
-                    'torneos_creados' => $this->member_model->obtenerTorneosCreados($id)
+                    'torneos_creados' => $this->user_model->obtenerTorneosCreados($q->id),
+                    'rol' => $q->rol
                 );
                 $this->session->set_userdata($data);
                 redirect('/');
@@ -31,7 +32,7 @@ class Member extends CI_Controller{
         redirect('/');
     }
     
-    function register(){
+    function register($rol){
         $this->load->library('form_validation');
         //field name, error message, validation rules
         $this->form_validation->set_rules('username', 'Username', 'trim|required|min_length[4]');
@@ -43,8 +44,8 @@ class Member extends CI_Controller{
             $this->load->view('includes/template', $data);
         }
         else{
-            $this->load->model('member_model');
-            $query = $this->member_model->create_member();
+            $this->load->model('user_model');
+            $query = $this->user_model->create_user($rol);
             if($query){
                 $this->login();
             }

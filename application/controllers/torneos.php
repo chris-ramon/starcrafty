@@ -1,13 +1,28 @@
 <?php
-require_once 'upload.php';
-
 class Torneos extends CI_Controller{
     function index(){
         $this->load->model('torneo_model');
         $this->load->model('torneos_tags_model');
+        $this->load->model('user_model');
         $data['main_content'] = "starcrafty";
-        $torneos = $this->torneo_model->principalInfo();                
-        $data['torneos'] = array_reverse($torneos);
+        $torneos = $this->torneo_model->principalInfo();
+        $aprobados = $this->torneo_model->torneosAprobados();
+        $data['torneos'] = $torneos;
+        $data['aprobados'] = $aprobados;
+        if($torneos){
+            $data['torneos'] = array_reverse($torneos);    
+        }
+        // si el usuario esta logeado actualizamos
+        // los torneos creados de la sesión cuando
+        // vuelva a la pág principal
+        // esto para actualizar los
+        // torneos creados por el mismo
+        // en la barra lateral izq
+        if($this->session->userdata('is_logged')){
+            $user_id = $this->session->userdata('id');
+            $torneos_creados = $this->user_model->obtenerTorneosCreados($user_id);
+            $this->session->set_userdata('torneos_creados', $torneos_creados);
+        }
         $this->load->view('includes/template', $data);
     }
     
@@ -23,7 +38,7 @@ class Torneos extends CI_Controller{
     
     function suspendidos(){
         $data['main_content'] = "suspendidos";
-        $this->load->view('includes/template', $data);    
+        $this->load->view('includes/template', $data);
     }
     
     function concluidos(){
@@ -42,6 +57,7 @@ class Torneos extends CI_Controller{
         echo 'from actualizar '.$id;
     }
 
+    // para crear torneos públicos
     function crearpub(){
         $is_logged = $this->session->userdata('is_logged');
         if($is_logged){
@@ -52,24 +68,42 @@ class Torneos extends CI_Controller{
             $this->load->view('includes/template', $data);
         }
         else{
-            echo 'Necesitas <a href="../">logearte</a> antes de usar esta pagina, gracias.';
+            echo 'Necesitas <a href="/starcrafty/">logearte</a> antes de usar esta pagina, gracias.';
         }
     }
+
+    // para crear torneos privados
+    function crearpriv(){
+        $is_logged = $this->session->userdata('is_logged');
+        if($is_logged){
+            $data['main_content'] = "crearprivado";
+            $data['second_js'] = "crearTorneo";
+            $data['third_js'] = "inhome";
+            $data['second_css'] = "crearTorneo";
+            $data['error'] = "";
+            $this->load->view('includes/template', $data);
+        }
+        else{
+            echo 'Necesitas <a href="/starcrafty/">logearte</a> antes de usar esta pagina, gracias.';
+        }
+    }
+
     
-    function nuevo(){          
-        
-        $nombre = $this->input->post('nombre', TRUE);
-        $descripcion = $this->input->post('descripcion', TRUE);        
-        
+    function nuevo($tipo){   
         $result = $this->do_upload('imagen');
         $fileName = $result['file_name'];
-        $image = "http://localhost/starcrafty/uploads/".$fileName;
-
+        $image = "http://localhost/starcrafty/uploads/".$fileName;       
+        
+        $nombre = $this->input->post('nombre', TRUE);
+        $descripcion = $this->input->post('descripcion', TRUE);    
+        
         $data['nombre'] = $nombre;
         $data['descripcion'] = $descripcion;
         $data['imagen'] = $image;
         $data['estado'] = "Reserva Abierta";
-        $data['id_miembro'] = $this->session->userdata('id');
+        $data['id_user'] = $this->session->userdata('id');
+        $data['aprobado'] = 'no';
+        $data['tipo'] = $tipo;
 
         $this->load->model('torneo_model');        
         
@@ -80,7 +114,34 @@ class Torneos extends CI_Controller{
         redirect('/');
         
     }
+
+    function poraprobar(){
+        $is_logged = $this->session->userdata('is_logged');
+        if($is_logged){
+        $this->load->model('torneo_model');
+        $data['main_content'] = 'torneosporaprobar';
+        $data['torneos_por_aprobar'] = $this->torneo_model->torneosPorAprobar();
+        $this->load->view('includes/template', $data);
+        } else {
+            echo 'Necesitas <a href="/starcrafty/">logearte</a> antes de usar esta pagina, gracias.';
+        }
+    }
     
+    function confirmartorneos($id, $opcion){
+        $is_logged = $this->session->userdata('is_logged');
+        if($is_logged){
+            $this->load->model('torneo_model');
+            $data = array(
+                'aprobado' => $opcion
+            );
+            $this->torneo_model->updateTorneo($data, $id);
+            redirect('/');
+
+        } else {
+            echo 'Necesitas <a href="/starcrafty/">logearte</a> antes de usar esta pagina, gracias.';
+        }
+    }
+
     // lógica para agregar el torneo
 
     // función para subir la imagen a la carpeta uploads que
@@ -89,7 +150,7 @@ class Torneos extends CI_Controller{
         function do_upload($field_name){
             $config['upload_path'] = './uploads/';
             $config['allowed_types'] = 'gif|jpg|png';
-            $config['max_size'] = '100';
+            $config['max_size'] = '900';
             $config['max_width']  = '1024';
             $config['max_height']  = '768';
             
@@ -134,4 +195,28 @@ class Torneos extends CI_Controller{
 
     
     // termina la lógica para agregar el torneo 
+
+    // Comentarios
+
+        function nuevo_comentario($id){
+            $this->form_validation->set_rules('comentario', 'Comentario','trim|required');
+            $this->form_validation->set_rules('nombre', 'Nombre','trim|required');
+            $this->form_validation->set_rules('correo', 'Correo','trim|required|valid_email');
+            $this->form_validation->set_error_delimiters('<div class="error">', '</div>');
+            
+            if($this->form_validation->run() == FALSE){
+                $this->detalle($id);
+                
+            } else{
+                $this->load->model('comentario_model');
+                $data['comentario'] = $this->input->post('comentario');
+                $data['nombre'] = $this->input->post('nombre');
+                $data['correo'] = $this->input->post('correo');
+                // 2011-11-05 - 17:01:23
+                $data['fecha'] = date('Y-m-d h:i:s');
+                $data['id_torneo'] = (int)$id;            
+                $this->comentario_model->agregarNuevo($data);
+                redirect('/torneos/detalle/'.$id);
+            }
+        }    
 }
