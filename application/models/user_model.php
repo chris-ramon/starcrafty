@@ -39,5 +39,16 @@ class User_model extends CI_Model{
         return FALSE;
     }
 
+    function obtenerUserPorId($id_user){
+        $this->db->where('id', $id_user);
+        $query = $this->db->get('users');        
+        if($query){
+            $result = $query->result();
+            return $result[0];
+        }
+        return FALSE;
+
+    }
+
     
 }

@@ -55,11 +55,10 @@
                     
                     
                     ?>              
-                </div>
-                    <?php
-                    echo validation_errors('<p class="error_register">');
-                    echo form_close();
-                    ?>                
+                </div>                   
+                    <?php echo validation_errors('<div class="error_register"><a href="#comentarios"> &raquo; </a>');?>
+                        
+                    <?php echo form_close(); ?>
 				<div id="headerTop">
                     <?php if(!($this->session->userdata('is_logged')) ) { ?>
                     <form method="post" action="/starcrafty/user/login/">
@@ -81,10 +80,11 @@
 			
 				<div id="main">
                     <?php if($this->session->userdata('is_logged')) { ?>
-					<div id="barLeft"> 
+					<div id="barLeft">
+                        <img src="<?php echo base_url() ?>application/site_media/img/sc2terran.png">
                         <ul>
                             <?php if( $this->session->userdata('rol') == 'admin') { ?>
-                                <ul><strong><a href="">Torneos Por Aprobar</a> &raquo; </strong>
+                                <ul><strong><a href="/starcrafty/torneos/poraprobar">Torneos Por Aprobar</a> &raquo; </strong>
                                     
                                 </ul>
                             <?php } ?>
@@ -93,7 +93,7 @@
                                 <li><a href="/starcrafty/torneos/crearpriv">Crear Torneo Privado</a></li>
 
                             </ul>
-                            <ul><strong>Mis Torneos</strong>
+                            <ul class="misTorneosSession"><strong>Mis Torneos</strong>
                                 <?php $torneos_creados = $this->session->userdata('torneos_creados'); ?>
                                 <?php if($torneos_creados) { ?>
                                     <?php foreach($torneos_creados as $torneo) { ?>
@@ -110,10 +110,13 @@
                     </div>
                     <?php } ?>
 					<div id="content">
-						<h1>Starcrafty | Peruvian SC2 Tournaments</h1>
+                        <header>
+                            <h1>Starcrafty | Peruvian SC2 Tournaments</h1>
+                        </header>
+						<!-- <h1>Starcrafty | Peruvian SC2 Tournaments</h1>
 						<div id="contentNews">
                             <img src="<?php echo base_url();?>application/site_media/img/sc2_1.png">
-                        </div>
+                        </div> -->
 						<div id="menu">
 							<a href="/starcrafty/torneos/" class="button buttonRed">Torneos</a>
 								<div id="torneoMenu">
