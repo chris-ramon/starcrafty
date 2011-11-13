@@ -19,7 +19,7 @@
 	            <h3>Información Principal</h3>
 	                
 	            <p><label for="nombre">Nombre </label><input type="text" name="nombre"><span class="asterisco"> *</span></p>
-	            <p><label for="imagen">Imagen </label><input type="file" name="imagen"><span class="asterisco"> *</span></p>
+	            <p><label for="imagen">Imagen </label><input type="file" name="imagen"><span class="asterisco"> * Tamaño Máximo: Ancho 500px, Alto 300px</span></p>
 	            <p><label for="descripcion">Descripción <span class="asterisco"> *</span></label><br/><textarea name="descripcion" id="txta_descp"></textarea></p>
 	            <p><label for="organizadores">Organizadores </label><input type="text" name="organizadores"><span class="asterisco"> *</span></p>
 	            <p><label for="auspiciadores">Auspiciadores </label>

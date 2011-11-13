@@ -69,18 +69,17 @@
 	</section>
 </div>
 <?php } elseif($torneo->aprobado == "rechazado") { ?>
-<div id="mainContent">
 <h2>&raquo;</h2>
-<div class="separator"></div>
-<p class="advice msg_advice">Este torneo no fue aprobado , gracias.</p>
+<div class="separator last"></div>
+<p class="centrar advice">Este torneo <em>no fue aprobado</em>, gracias.</p>
 <div class="img_excep">
         <img src="<?php echo base_url() ?>application/site_media/img/marine.png" />
-     </div>
-<?php } else{ ?>
-<div class="separator"></div>
-<p class="advice msg_advice">Este torneo no fue aprobado aún, gracias.</p>
-<div class="img_excep">
-        <img src="<?php echo base_url() ?>application/site_media/img/marine.png" />
-     </div>
-<?php } ?>
 </div>
+<?php } else{ ?>
+<h2>&raquo;</h2>
+<div class="separator last"></div>
+<p class="centrar advice">Este torneo no fue aprobado <em>aún</em>, gracias.</p>
+<div class="img_excep">
+        <img src="<?php echo base_url() ?>application/site_media/img/marine.png" />
+</div>
+<?php } ?>

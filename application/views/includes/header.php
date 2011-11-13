@@ -23,40 +23,37 @@
     <div id="container">
 			<div id="header">
                 <div id="registro">                    
-                    <span id="cerrarRegistro">X</span><p>
+                    <p><span id="cerrarRegistro">X</span></p>
                     <?php         
                     $this->load->helper('form');           
-                    echo form_open('/user/register/gamer');
-                    $attr = array('class' => 'reddy');
+                    echo form_open('/user/register/gamer');                    
+                    ?>
+                    <p>
+                    <?php echo form_label('Username ', 'username');
+                    echo form_input('username', set_value('username')); ?>
+                    </p>                
                     
-                    echo form_label('Username ', 'username', $attr);
-                    echo form_input('username', set_value('username'));                    
+                    <p>
+                    <?php echo form_label('Password ','password');                  
+                    echo form_password('pwd'); ?>
+                    </p>
                     
-                    echo form_label('Password ','password', $attr);                    
+                    <p>
+                    <?php echo form_label('ID Battlenet ', 'id_battlenet');
+                    echo form_input('id_battlenet', set_value('id_battlenet')); ?>
+                    </p>
                     
-                    echo form_password('pwd');
-                    
-                    #echo form_password('password2', 'Password Again');
-                    
-                    echo form_label('ID Battlenet', 'id_battlenet', $attr);
-                    echo form_input('id_battlenet', set_value('id_battlenet'));
-                    
-                    echo '</p><p>';
-                    
-                    $registrarme = array('value' => 'Registrarme', 'class' => 'boton');
+                    <p>
+                    <?php $registrarme = array('value' => 'Registrarme', 'class' => 'boton');
                     echo form_submit($registrarme);
                     
                     
                     $reset = array('value' => 'Restablecer', 'class' => 'boton');
-                    echo form_reset($reset);                    
+                    echo form_reset($reset); ?>                    
                     
-                    echo '</p>';
-                    
-                    
-                    
-                    ?>              
+                    </p>
                 </div>                   
-                    <?php echo validation_errors('<div class="error_register"><a href="#comentarios"> &raquo; </a>');?>
+                    <?php echo validation_errors();?>
                         
                     <?php echo form_close(); ?>
 				<div id="headerTop">
@@ -84,8 +81,9 @@
                         <img src="<?php echo base_url() ?>application/site_media/img/sc2terran.png">
                         <ul>
                             <?php if( $this->session->userdata('rol') == 'admin') { ?>
-                                <ul><strong><a href="/starcrafty/torneos/poraprobar">Torneos Por Aprobar</a> &raquo; </strong>
-                                    
+                                <ul>
+                                    <li><strong><code><a href="/starcrafty/torneos/poraprobar">Torneos Por Aprobar</a></code> &raquo; </strong></li>
+                                    <li><strong><code><a href="/starcrafty/torneos/administrar">Todos los Torneos</a></code> &raquo;</strong></li>
                                 </ul>
                             <?php } ?>
                             <ul><strong>Crea tu propio torneo !</strong>
@@ -104,7 +102,7 @@
                                 <?php } ?>
                             </ul>
                             <ul><strong>Mi Cuenta</strong>
-                                <li><a href="crearTorneo.html">Actualizar Información</a></li>
+                                <li><a href="#">Actualizar Información</a></li>
                             </ul>
                         </ul>                 
                     </div>
@@ -113,17 +111,13 @@
                         <header>
                             <h1>Starcrafty | Peruvian SC2 Tournaments</h1>
                         </header>
-						<!-- <h1>Starcrafty | Peruvian SC2 Tournaments</h1>
-						<div id="contentNews">
-                            <img src="<?php echo base_url();?>application/site_media/img/sc2_1.png">
-                        </div> -->
 						<div id="menu">
 							<a href="/starcrafty/torneos/" class="button buttonRed">Torneos</a>
 								<div id="torneoMenu">
 									<ul>
 									<li><a href="/starcrafty/torneos/activos/" class="button buttonRed lefty">Activos</a></li>
 									<li><a href="/starcrafty/torneos/concluidos/" class="button buttonRed lefty">Concluídos</a></li>
-									<li><a href="/starcrafty/torneos/suspendidos/" class="button buttonRed lefty">Suspendidos</a></li>																	
+									<li><a href="/starcrafty/torneos/suspendidos/" class="button buttonRed lefty">Suspendidos</a></li>												
 									</ul>
 									
 								</div>

@@ -1,9 +1,12 @@
 /*
 *{
 border:1px solid orange;
-}*/
+}
+*/
+
 
 body{
+margin:0;
 font-size:14px;
 font-family:Verdana;
 background:url('../img/back/always_grey.png');
@@ -30,20 +33,22 @@ font-size:1.3em;
 text-shadow:1px 1px 1px #940500;
 }
 #header{
-margin:1em auto;
+margin:0 auto;
 width:900px;
 overflow:auto;
-padding-left:1.5em;   
+padding-left:1.5em; 
 }
 #headerTop{
+margin-top:1em;
 width:30em;
 float:left;
 }
 
 #headerLeft{
-width:20em;
-margin-left:40em;
 text-align:right;
+margin-left:40em;
+margin-top:1em;
+width:20em;
 }
 
 #main{
@@ -68,14 +73,13 @@ padding:0px .5em 1.5em 1em;
 margin-bottom:2em;
 }
 #content{
-margin-top:2em;
+margin-top:0em;
 margin-left:9.5em;
-
 padding:1em 2em 0px 2em;
 width:900px;
 -webkit-border-radius:15px;
 -moz-border-radius:15px;
-overflow:auto;
+overflow:hidden;
 }
 
 header{
@@ -115,8 +119,8 @@ height:130px;
 width:310px;
 }
 #menu{
-margin-top:7em;
-margin-left:10px;
+margin-top:1.6em;
+text-align:center;
 }
 /* Menú */
 .button{
@@ -218,16 +222,16 @@ height:1.3em;
 border-radius:25px;
 float:left;
 }
-.green{
+.reservaabierta{
 background:#71B43A;
 }
-.blue{
+.encompetencia{
 background:#3648CC;
 }
-.red{
+.suspendido{
 background:#D1331F;
 }
-.yellow{
+.concluido{
 background:#ECE61F;
 }
 .tournamentContent h3{
@@ -274,12 +278,12 @@ z-index:1;
 }
 .detalleReserva{
 position:absolute;
-width:40em;
-height:25em;
+width:50%;
 border:3px solid white;
 background:#2A3034;
 border-radius:10px;
 z-index:2;
+padding:5px;
 display:none;
 }
 #popUp a{
@@ -287,8 +291,8 @@ margin:0px 0px 0px 10px;
 }
 #torneoMenu{
 position:absolute;
-padding:0;
-margin:0;
+left:16.4em;
+text-align:left;
 display:none;
 }
 #torneoMenu ul{
@@ -300,16 +304,25 @@ list-style:none;
 }
 #registro{
 position:absolute;
-width:900px;
-height:120px;
+right:16em;
+margin-top:20px;
 border:3px solid white;
-padding:10px 0px 0px 30px;
 -webkit-border-radius:15px;
 -moz-border-radius:15px;
-background:#9CBBF2;
+background:#2A3034;
 display:none;
 z-index:3;
+padding:15px 20px;
+
 }
+#registro label:nth-child(1){
+clear:right;
+}
+
+#registro label{	
+	display:block;
+}
+
 #cerrarRegistro{
 color:#EC4854;
 font-size:2em;
@@ -319,6 +332,11 @@ cursor:pointer;
 }
 #cerrarRegistro:hover{
 color:#851820;
+}
+.cerrar{
+	margin-right:16px;
+	margin-top:20px;
+	float:right;
 }
 #headerTop input[type="text"], #headerTop input[type="password"], #registro input[type="text"], #registro input[type="password"]{
 padding: 9px;
@@ -337,18 +355,22 @@ box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px;
 width: 140px;
 padding: 4px;
 }
-.reddy{
-color:#000;
-}
 #detalleReservaContent{
-width:200px;
+clear:right;
+text-align:center;
 margin:0 auto;
+
 }
 
-.confirmacionTorneos tr,th,td{
-border:1px solid white;
-padding:5px;
+.tabla{
+	margin:20px auto;
 }
+
+.tabla tr,th,td{
+	border:1px solid white;
+	padding:10px;
+}
+
 .boton{
 border:2px solid white;
 background:white;
@@ -357,6 +379,7 @@ margin-bottom:1em;
 }
 .boton:hover{
 background:#7F9E87;
+color:#E8E8E8;
 cursor:pointer;
 }
 #invitados{
@@ -390,7 +413,7 @@ height:2em;
 padding:0.4em 0.5em;
 }
 
-.detalleform input[type="text"]:hover, input[type="text"]:focus, textarea:hover, textarea:focus{
+.detalleform input[type="text"]:hover, input[type="text"]:focus, textarea:hover, textarea:focus, #codigoPago:hover, #codigoPago:active{
 border-color: #C9C9C9; 
 -box-shadow: 0px 0px 8px white;
 -webkit-box-shadow: 0px 0px 7px white;
@@ -445,4 +468,25 @@ color:#90BBFF;
 
 .img_excep{
 	text-align:center;
+}
+
+.lastseparator{	
+	margin-bottom:140px;
+}
+.centrar{
+	font-weight:bold;
+	margin-bottom:35px;
+	text-align:center;
+}
+#codigoPago{
+	height:25px;
+	width:220px;
+	font-size:20px;
+	padding-left:7px;
+}
+.botonpago{
+	margin-right:20px;
+}
+#reservapago{
+	margin-left:20px;	
 }

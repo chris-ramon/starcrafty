@@ -1,10 +1,23 @@
 $(document).ready(function(){
     $('.reservarCupo').click(function(){
-        $('#backgroundPopUp').css('opacity','0.5');
-		$('#backgroundPopUp').fadeIn('slow');
-        $('.detalleReserva').fadeIn();
+        var id_torneo = $(this).closest('p').attr('id');
+        var detallesReserva = $('#tournament').find('.detalleReserva');
+        detallesReserva.each(busquedaReserva);
+
+        function busquedaReserva(index){        
+            var id =  $(this).attr('class').split(" ")[1];        
+            if(id == id_torneo){
+                $('#backgroundPopUp').css('opacity','0.5');
+                $('#backgroundPopUp').fadeIn('slow');
+                $(this).fadeIn();
+                return false;
+            }
+        }
         return false;
     });
+
+
+
     $('.cerrar').click(function(){
         $('#backgroundPopUp').fadeOut('slow');
         $('.detalleReserva').fadeOut();

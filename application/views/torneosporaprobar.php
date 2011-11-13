@@ -1,8 +1,8 @@
 <div id="mainContent">
-    <h2>Torneos Por Aprobar</h2>
-    <div class="separator"></div>
-    <?php if(count($torneos_por_aprobar)>0) { ?>
-    <table class="confirmacionTorneos">
+    <h2>Torneos Por Aprobar</h2>    
+    <div class="separator last"></div>
+    <?php if($torneos_por_aprobar) { ?>
+    <table class="tabla">
          <tr>
              <th>Nombre Torneo</th>
              <th>Tipo</th>
@@ -15,7 +15,7 @@
          <tr>
              <td><?php echo $torneo->nombre ?></td>
              <td><?php echo $torneo->tipo ?></td>
-             <td><?php echo $torneo->id_user ?></td>
+             <td><?php echo $torneo->creador ?></td>
              <td><?php echo $torneo->organizador ?></td>
              <td><?php echo $torneo->fecha_torneo ?></td>
              <td>
@@ -26,10 +26,9 @@
          <?php } ?>
      </table>
      <?php } else { ?>     
-     <p class="advice msg_advice">No hay torneos por aprobar !</p>
+     <p class="advice centrar">No existen torneos por aprobar !</p>
      <div class="img_excep">
         <img src="<?php echo base_url() ?>application/site_media/img/marine.png" />
      </div>
      <?php } ?>
-     <br/>     
 </div>

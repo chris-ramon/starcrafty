@@ -27,22 +27,30 @@ class Torneos extends CI_Controller{
     }
     
     function reservas(){
+        $this->load->model('torneo_model');        
         $data['main_content'] = "reservas";
+        $data['torneos'] = $this->torneo_model->getTorneosPorCriterio('estado','Reserva Abierta');
         $this->load->view('includes/template', $data);
     }
     
     function activos(){
+        $this->load->model('torneo_model');        
         $data['main_content'] = "activos";
+        $data['torneos'] = $this->torneo_model->getTorneosPorCriterio('estado','En Competencia');
         $this->load->view('includes/template', $data);
     }
     
     function suspendidos(){
+        $this->load->model('torneo_model');        
         $data['main_content'] = "suspendidos";
+        $data['torneos'] = $this->torneo_model->getTorneosPorCriterio('estado','Suspendido');
         $this->load->view('includes/template', $data);
     }
     
     function concluidos(){
+        $this->load->model('torneo_model');        
         $data['main_content'] = "concluidos";
+        $data['torneos'] = $this->torneo_model->getTorneosPorCriterio('estado','Concluido');
         $this->load->view('includes/template', $data);
     }
 
@@ -54,7 +62,27 @@ class Torneos extends CI_Controller{
     }
 
     function actualizar($id){
-        echo 'from actualizar '.$id;
+        $this->load->model('torneo_model');
+        if($estado = $this->input->post('estado')){
+            $data = array(
+                'estado' => $estado
+            );
+            $this->torneo_model->updateTorneo($data, $id);
+            redirect('/torneos/actualizar/'.$id);
+
+        } else {
+            $result = $this->torneo_model->buscarPorId($id);
+            $data['main_content'] = 'actualizar';
+            $data['torneo'] = $result;
+            $this->load->view('includes/template', $data);
+        }
+    }
+
+    function administrar(){
+        $this->load->model('torneo_model');
+        $data['main_content'] = "administrar";
+        $data['torneos'] = $this->torneo_model->principalInfo();
+        $this->load->view('includes/template', $data);
     }
 
     // para crear torneos públicos
@@ -115,6 +143,12 @@ class Torneos extends CI_Controller{
         
     }
 
+    function eliminar($id){
+        $this->load->model('torneo_model');
+        $this->torneo_model->delete($id);
+        $this->administrar();
+    }
+
     function poraprobar(){
         $is_logged = $this->session->userdata('is_logged');
         if($is_logged){
@@ -151,8 +185,8 @@ class Torneos extends CI_Controller{
             $config['upload_path'] = './uploads/';
             $config['allowed_types'] = 'gif|jpg|png';
             $config['max_size'] = '900';
-            $config['max_width']  = '1024';
-            $config['max_height']  = '768';
+            $config['max_width']  = '500';
+            $config['max_height']  = '300';
             
             $this->load->library('upload', $config);              
             
