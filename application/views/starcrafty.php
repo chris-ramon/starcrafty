@@ -10,7 +10,9 @@
     </div>
     <?php } else{ ?>
     <div id="busquedaTorneo">
+        <?php echo form_open('/busqueda'); ?>
         <p><input type="search" name="busqueda" class="busqueda"><input type="submit" value="Buscar" class="boton"></p>
+        <?php echo form_close(); ?>
     </div>
     
     <div class="separator last"></div>
@@ -23,7 +25,7 @@
             <a href="#" class="cerrar">Cerrar</a>
 
             <div id="reservapago">
-            <p><strong>Torneo: </strong></p>
+            <p><strong>Torneo: </strong></p>            
             <p><em><?php echo $torneo->nombre ?></em></p>
             <p><strong>Fecha:</strong></p>
             <p><em><?php echo $torneo->fecha_torneo ?></em></p>
@@ -31,11 +33,9 @@
 
             <div id="detalleReservaContent">                      
             <p>Código de Pago</p>
-            <?php echo form_open(); ?>
+            <?php echo form_open('reserva/nueva/'.$torneo->id); ?>
             <p><input type="text" name="codigoPago" class="degradado" id="codigoPago" maxlength="18"></p>
             <p><input type="submit" value="Confirmar Reserva" class="boton botonpago"><input type="reset" class="boton"></p>
-            
-
             </div>                
             <?php echo form_close(); ?>
 
@@ -48,16 +48,36 @@
         </div>
         
         <div class="tournamentOptions">
-        
-            <?php if($torneo->estado == "Reserva Abierta") { ?>
+
+            <?php $estado = $torneo->estado ?>
+            <?php if($estado == "Reserva Abierta") { ?>
         	<!-- Status of the tournament -->
         	<p id="<?php echo $torneo->id ?>">
-            <a href="#" class="opcion reservarCupo">Reservar Cupo</a>
-            </p>
+            <?php if($torneo->total_reservas < $torneo->num_jugadores) {?>
+            <a href="#" class="opcion reservarCupo">Reservar Cupo</a> &raquo;
+            <?php echo $torneo->total_reservas ?> / <?php echo $torneo->num_jugadores  ?>
+            </p>            
+
+            <p><span class="statusTournament <?php echo str_replace(" ", "", strtolower($torneo->estado)) ?>"></span><code><?php echo $torneo->estado ?></code></p>
+
+            <?php } else { ?>
+            <code>Reservas Agotadas</code>
+            <?php } ?>
             <?php } ?>
 
-        	<p><span class="statusTournament <?php echo str_replace(" ", "", strtolower($torneo->estado)) ?>"></span><code><?php echo $torneo->estado ?></code></p>
-            
+            <?php if($estado == 'En Competencia') { ?>
+            <p><a href="#" class="opcion">Ver Resultados</a></p>
+            <p><span class="statusTournament <?php echo str_replace(" ", "", strtolower($torneo->estado)) ?>"></span><code><?php echo $torneo->estado ?></code></p>
+            <?php } ?>
+
+            <?php if($estado == 'Suspendido') { ?>
+            <p><span class="statusTournament <?php echo str_replace(" ", "", strtolower($torneo->estado)) ?>"></span><code><?php echo $torneo->estado ?></code></p>
+            <?php } ?>
+
+            <?php if($estado == 'Concluido') { ?>
+            <p><a href="#" class="opcion">Ver Resultados</a></p>
+            <p><span class="statusTournament <?php echo str_replace(" ", "", strtolower($torneo->estado)) ?>"></span><code><?php echo $torneo->estado ?></code></p>
+            <?php } ?>
         	<!-- Share the tournament -->							
             <div class="shareTournament">
                 

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 14-11-2011 a las 00:42:33
+-- Tiempo de generación: 16-11-2011 a las 02:52:42
 -- Versión del servidor: 5.5.8
 -- Versión de PHP: 5.3.5
 
@@ -18,8 +18,6 @@ SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 --
 -- Base de datos: `starcrafty`
 --
-CREATE DATABASE `starcrafty` DEFAULT CHARACTER SET utf8 COLLATE utf8_spanish_ci;
-USE `starcrafty`;
 
 -- --------------------------------------------------------
 
@@ -57,10 +55,32 @@ CREATE TABLE IF NOT EXISTS `comentarios` (
   `id_torneo` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `id_torneo` (`id_torneo`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=1 ;
 
 --
 -- Volcar la base de datos para la tabla `comentarios`
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `reservas`
+--
+
+CREATE TABLE IF NOT EXISTS `reservas` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id_user` int(11) NOT NULL,
+  `id_torneo` int(11) NOT NULL,
+  `fecha` datetime NOT NULL,
+  `codigo_pago` int(15) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `id_user` (`id_user`),
+  KEY `id_torneo` (`id_torneo`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=27 ;
+
+--
+-- Volcar la base de datos para la tabla `reservas`
 --
 
 
@@ -75,7 +95,7 @@ CREATE TABLE IF NOT EXISTS `tags` (
   `tag` varchar(25) COLLATE utf8_spanish_ci NOT NULL,
   PRIMARY KEY (`id`),
   KEY `id` (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=15 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=16 ;
 
 --
 -- Volcar la base de datos para la tabla `tags`
@@ -92,7 +112,8 @@ INSERT INTO `tags` (`id`, `tag`) VALUES
 (10, 'arenales'),
 (11, '2012'),
 (12, 'fastel'),
-(14, '2133');
+(14, '2133'),
+(15, '');
 
 -- --------------------------------------------------------
 
@@ -111,9 +132,10 @@ CREATE TABLE IF NOT EXISTS `torneos` (
   `tipo` varchar(7) COLLATE utf8_spanish_ci NOT NULL,
   `organizador` varchar(40) COLLATE utf8_spanish_ci NOT NULL,
   `fecha_torneo` datetime NOT NULL,
+  `num_jugadores` int(2) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `id_user` (`id_user`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=27 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=11 ;
 
 --
 -- Volcar la base de datos para la tabla `torneos`
@@ -152,7 +174,7 @@ CREATE TABLE IF NOT EXISTS `torneos_tags` (
   PRIMARY KEY (`id`),
   KEY `id_torneo` (`id_torneo`),
   KEY `id_tag` (`id_tag`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=219 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=29 ;
 
 --
 -- Volcar la base de datos para la tabla `torneos_tags`
@@ -199,6 +221,13 @@ INSERT INTO `users` (`id`, `username`, `password`, `password2`, `id_battlenet`, 
 --
 ALTER TABLE `comentarios`
   ADD CONSTRAINT `comentarios_ibfk_1` FOREIGN KEY (`id_torneo`) REFERENCES `torneos` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `reservas`
+--
+ALTER TABLE `reservas`
+  ADD CONSTRAINT `reservas_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `reservas_ibfk_2` FOREIGN KEY (`id_torneo`) REFERENCES `torneos` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `torneos`

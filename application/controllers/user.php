@@ -9,6 +9,7 @@ class User extends CI_Controller{
         } 
         else{
             $this->load->model('user_model');
+            $this->load->model('reserva_model');
             $q = $this->user_model->validate();
             if($q){               
                 $data = array(
@@ -16,7 +17,8 @@ class User extends CI_Controller{
                     'id' => $q->id,
                     'is_logged' => true,
                     'torneos_creados' => $this->user_model->obtenerTorneosCreados($q->id),
-                    'rol' => $q->rol
+                    'rol' => $q->rol,
+                    'mis_reservas' => $this->reserva_model->getAll_byUserId($q->id)
                 );
                 $this->session->set_userdata($data);
                 redirect('/');

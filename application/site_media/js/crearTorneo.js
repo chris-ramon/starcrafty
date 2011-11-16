@@ -35,7 +35,8 @@ $(document).ready(
 function llenarCampos(){
     $('input[name="nombre"]').val('Torneo miraflores 2013 !');
     $('textarea[name="descripcion"]').val('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc volutpat gravida elit eget condimentum. Nullam lectus odio, venenatis et condimentum a, gravida sed neque. Proin et arcu tortor, non volutpat lectus. Aenean at justo sit amet libero suscipit malesuada.');
-    $('input[name="tags"]').val('miraflores sc2 2013');      
+    $('input[name="tags"]').val('miraflores sc2 2013');  
+    $('input[name="numeroJugadores"]').val(4);
 }
 
 function listarAuspiciadores(){

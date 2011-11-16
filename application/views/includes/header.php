@@ -95,12 +95,31 @@
                                 <?php $torneos_creados = $this->session->userdata('torneos_creados'); ?>
                                 <?php if($torneos_creados) { ?>
                                     <?php foreach($torneos_creados as $torneo) { ?>
-                                        <li><a href="/starcrafty/torneos/detalle/<?php echo $torneo->id ?>"><?php echo $torneo->nombre ?></a> | <a href="/starcrafty/torneos/actualizar/<?php echo $torneo->id ?>">actualizar info... </a></li>
+                                        <li><a href="/starcrafty/torneos/detalle/<?php echo $torneo->id ?>"><?php echo $torneo->nombre ?></a>
+                                            <ul><br/>
+                                                
+                                                <li><a href="/starcrafty/torneos/actualizar/<?php echo $torneo->id ?>">Actualizar información </a></li>
+                                                <li><a href="/starcrafty/reserva/listar/<?php echo $torneo->id ?>">Reservas</a></li>
+                                            </ul>
+                                        </li>
                                     <?php } ?>
                                 <?php } else{ ?>
                                 <p>No tienes ningún torneo</p>
+                                <?php } ?>                
+                            </ul>
+                            
+                            <ul class="misTorneosSession"><strong>Mis Reservas</strong>
+                                <?php $mis_reservas = $this->session->userdata('mis_reservas'); ?>
+                                <?php if($mis_reservas) { ?>
+                                    <?php foreach ($mis_reservas as $reserva): ?>
+                                        <li><?php echo $reserva->nombre_torneo; ?></li>                                       
+                                    <?php endforeach ?>
+
+                                <?php } else { ?>
+                                <p>No tienes reservas hechas </p>
                                 <?php } ?>
                             </ul>
+
                             <ul><strong>Mi Cuenta</strong>
                                 <li><a href="#">Actualizar Información</a></li>
                             </ul>

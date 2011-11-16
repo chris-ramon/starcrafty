@@ -1,6 +1,8 @@
 <?php
 
 class User_model extends CI_Model{
+    const PUNTOS=1;
+
     function validate(){
         $this->db->select('id, rol');        
         $this->db->where('username', $this->input->post('username'));
@@ -48,6 +50,15 @@ class User_model extends CI_Model{
         }
         return FALSE;
 
+    }
+
+    function getRankingOrdenados()
+    {
+        
+        $this->db->order_by("ranking", "asc");         
+        $query = $this->db->get('users'); 
+        return $query->result();
+        
     }
 
     

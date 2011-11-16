@@ -21,7 +21,9 @@ class Torneos extends CI_Controller{
         if($this->session->userdata('is_logged')){
             $user_id = $this->session->userdata('id');
             $torneos_creados = $this->user_model->obtenerTorneosCreados($user_id);
+            $mis_reservas = $this->reserva_model->getAll_byUserId($user_id);
             $this->session->set_userdata('torneos_creados', $torneos_creados);
+            $this->session->set_userdata('mis_reservas', $mis_reservas);
         }
         $this->load->view('includes/template', $data);
     }
@@ -123,7 +125,8 @@ class Torneos extends CI_Controller{
         $image = "http://localhost/starcrafty/uploads/".$fileName;       
         
         $nombre = $this->input->post('nombre', TRUE);
-        $descripcion = $this->input->post('descripcion', TRUE);    
+        $descripcion = $this->input->post('descripcion', TRUE);
+        $numeroJugadores = $this->input->post('numeroJugadores', TRUE);
         
         $data['nombre'] = $nombre;
         $data['descripcion'] = $descripcion;
@@ -132,6 +135,7 @@ class Torneos extends CI_Controller{
         $data['id_user'] = $this->session->userdata('id');
         $data['aprobado'] = 'no';
         $data['tipo'] = $tipo;
+        $data['num_jugadores'] = $numeroJugadores;
 
         $this->load->model('torneo_model');        
         

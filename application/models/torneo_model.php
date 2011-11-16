@@ -25,17 +25,19 @@ class Torneo_model extends CI_Model{
 	}
 
 	function principalInfo(){
-		$this->db->select('id, id_user, nombre, descripcion, imagen, estado, aprobado, fecha_torneo, tipo');
+		$this->db->select('id, id_user, nombre, descripcion, imagen, estado, aprobado, fecha_torneo, tipo, num_jugadores');
 		$query = $this->db->get('torneos');
 		$query = $query->result();
 		$this->load->model('torneos_tags_model');		
 		$this->load->model('comentario_model');		
 		$this->load->model('user_model');		
+		$this->load->model('reserva_model');		
 		$data = FALSE;
 		foreach($query as $row){
 			$row->tags = $this->torneos_tags_model->getTags($row->id);
 			$row->cantidad_comentarios = $this->comentario_model->cantidadComentarios($row->id);
 			$row->creador = $this->user_model->obtenerUserPorId($row->id_user)->username;
+			$row->total_reservas = $this->reserva_model->total_reservas($row->id)->total_reservas;
 			$data[] = $row;
 		}
 		return $data;
@@ -91,6 +93,15 @@ class Torneo_model extends CI_Model{
 	function delete($id){
 		$this->load->model('persistence');
 		$this->persistence->delete('torneos',$id);	
+	}
+
+	function getName_byId($id_torneo){
+		$this->db->where('id', $id_torneo);
+		$this->db->select('nombre');
+		$query = $this->db->get('torneos');
+		$results = $query->result();
+		$result = $results[0];
+		return $result;
 	}
 
 }

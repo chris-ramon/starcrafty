@@ -1,8 +1,8 @@
 /*
 *{
 border:1px solid orange;
-}
-*/
+}*/
+
 
 
 body{
@@ -291,8 +291,7 @@ margin:0px 0px 0px 10px;
 }
 #torneoMenu{
 position:absolute;
-left:16.4em;
-text-align:left;
+text-align:right;
 display:none;
 }
 #torneoMenu ul{
@@ -364,11 +363,18 @@ margin:0 auto;
 
 .tabla{
 	margin:20px auto;
+	text-align:center;
 }
 
 .tabla tr,th,td{
 	border:1px solid white;
 	padding:10px;
+}
+
+.tabla caption{
+	font-size:20px;
+	color:#96B89F;
+	margin-bottom:9px;
 }
 
 .boton{
@@ -490,3 +496,4 @@ color:#90BBFF;
 #reservapago{
 	margin-left:20px;	
 }
+
